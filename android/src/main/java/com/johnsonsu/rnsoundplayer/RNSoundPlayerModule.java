@@ -44,73 +44,104 @@ public class RNSoundPlayerModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void playSoundFile(String name, String type) throws IOException {
-        mountSoundFile(name, type);
-        this.resume();
+    public void playSoundFile(String name, String type) {
+        try {
+            mountSoundFile(name, type);
+            this.resume();
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+        }
     }
 
     @ReactMethod
-    public void loadSoundFile(String name, String type) throws IOException {
-        mountSoundFile(name, type);
+    public void loadSoundFile(String name, String type) {
+        try {
+            mountSoundFile(name, type);
+        } catch(Throwable ex) {
+            ex.printStackTrace();
+        }
     }
 
     @ReactMethod
-    public void playUrl(String url) throws IOException {
-        prepareUrl(url);
-        this.resume();
+    public void playUrl(String url) {
+        try {
+            prepareUrl(url);
+            this.resume();
+        } catch(Throwable ex) {
+            ex.printStackTrace();
+        }
     }
 
     @ReactMethod
-    public void loadUrl(String url) throws IOException {
-        prepareUrl(url);
+    public void loadUrl(String url) {
+        try {
+            prepareUrl(url);
+        } catch(Throwable ex) {
+            ex.printStackTrace();
+        }
     }
 
     @ReactMethod
-    public void pause() throws IllegalStateException {
+    public void pause() {
         try {
             if (this.mediaPlayer != null) {
                 if(this.mediaPlayer.isPlaying()) {
                     this.mediaPlayer.pause();
                 }
             }
-        } catch (Exception ex) {
+        } catch (Throwable ex) {
             ex.printStackTrace();
         }
     }
 
     @ReactMethod
-    public void resume() throws IOException, IllegalStateException {
-        if (this.mediaPlayer != null) {
-            this.setVolume(this.volume);
-            this.mediaPlayer.start();
+    public void resume() {
+        try {
+            if (this.mediaPlayer != null) {
+                this.setVolume(this.volume);
+                this.mediaPlayer.start();
+            }
+        } catch(Throwable ex) {
+            ex.printStackTrace();
         }
     }
 
     @ReactMethod
-    public void stop() throws IllegalStateException {
-        if (this.mediaPlayer != null) {
-            this.mediaPlayer.stop();
+    public void stop() {
+        try {
+            if (this.mediaPlayer != null) {
+                this.mediaPlayer.stop();
+            }
+        } catch(Throwable ex) {
+            ex.printStackTrace();
         }
     }
 
     @ReactMethod
-    public void seek(float seconds) throws IllegalStateException {
-        if (this.mediaPlayer != null) {
-            this.mediaPlayer.seekTo((int) seconds * 1000);
+    public void seek(float seconds) {
+        try {
+            if (this.mediaPlayer != null) {
+                this.mediaPlayer.seekTo((int) seconds * 1000);
+            }
+        } catch(Throwable ex) {
+            ex.printStackTrace();
         }
     }
 
     @ReactMethod
-    public void setVolume(float volume) throws IOException {
-        this.volume = volume;
-        if (this.mediaPlayer != null) {
-            this.mediaPlayer.setVolume(volume, volume);
+    public void setVolume(float volume) {
+        try {
+            this.volume = volume;
+            if (this.mediaPlayer != null) {
+                this.mediaPlayer.setVolume(volume, volume);
+            }
+        } catch(Throwable ex) {
+            ex.printStackTrace();
         }
     }
 
     @ReactMethod
-    public void getInfo(
-            Promise promise) {
+    public void getInfo(Promise promise) {
         WritableMap map = Arguments.createMap();
         map.putDouble("currentTime", this.mediaPlayer.getCurrentPosition() / 1000.0);
         map.putDouble("duration", this.mediaPlayer.getDuration() / 1000.0);
@@ -184,7 +215,7 @@ public class RNSoundPlayerModule extends ReactContextBaseJavaModule {
         return Uri.parse("file://" + folder + "/" + file);
     }
 
-    private void prepareUrl(String url) throws IOException {
+    private void prepareUrl(String url) {
         try {
             if (this.mediaPlayer == null) {
                 Uri uri = Uri.parse(url);
@@ -204,7 +235,7 @@ public class RNSoundPlayerModule extends ReactContextBaseJavaModule {
                 this.mediaPlayer.setDataSource(getCurrentActivity(), uri);
                 this.mediaPlayer.prepare();
             }
-        } catch (Exception ex) {
+        } catch (Throwable ex) {
             ex.printStackTrace();
         }
         WritableMap params = Arguments.createMap();

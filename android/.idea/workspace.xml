@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01a7b0fe-cc55-4b16-81e6-cd732e6ac8d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/johnsonsu/rnsoundplayer/RNSoundPlayerModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/johnsonsu/rnsoundplayer/RNSoundPlayerModule.java" afterDir="false" />
-    </list>
+    <list default="true" id="01a7b0fe-cc55-4b16-81e6-cd732e6ac8d5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
