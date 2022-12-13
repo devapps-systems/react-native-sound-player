@@ -1,3 +1,7 @@
+# Reason for this fork
+
+We observed that the prepareUrl call was throwing exception when the media was invalid. So modified the native Android code to catch this error
+
 # react-native-sound-player
 
 Play audio files, stream audio from URL, using ReactNative.
